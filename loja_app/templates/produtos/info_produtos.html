@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+  }
+
+  .produto-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .galeria {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .imagem-principal {
+    width: 100%;
+    height: 450px;
+    object-fit: contain;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  .miniaturas {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .miniaturas img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .miniaturas img:hover,
+  .miniaturas img.active {
+    outline: 2px solid #000;
+  }
+
+  .detalhes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #f0f0f0;
+  }
+
+  .detalhes h1 {
+    font-size: 28px;
+    color: #ffffff;
+  }
+
+  .preco {
+    font-size: 26px;
+    font-weight: bold;
+    color: #00e676;
+  }
+
+  .info {
+    font-size: 16px;
+    color: #cccccc;
+  }
+
+  .btn-whatsapp {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-whatsapp:hover {
+    background-color: #1da851;
+  }
+
+  @media (max-width: 768px) {
+    .produto-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    .imagem-principal {
+      height: 300px;
+    }
+  }
+</style>
+
+<div class="produto-wrapper">
+  <!-- Galeria de Imagens -->
+  <div class="galeria">
+    <img id="main-image" class="imagem-principal" src="{{ produto.foto_1.url }}" alt="{{ produto.nome }}">
+
+    <div class="miniaturas">
+      <img src="{{ produto.foto_1.url }}" class="active" onclick="changeImage(this)" alt="Miniatura 1">
+      {% if produto.foto_2 %}
+        <img src="{{ produto.foto_2.url }}" onclick="changeImage(this)" alt="Miniatura 2">
+      {% endif %}
+      {% if produto.foto_3 %}
+        <img src="{{ produto.foto_3.url }}" onclick="changeImage(this)" alt="Miniatura 3">
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Informações do Produto -->
+  <div class="detalhes">
+    <h1>{{ produto.nome }}</h1>
+    <p class="preco">R$ {{ produto.preco|floatformat:2 }}</p>
+    <p class="info"><strong>Tamanhos disponíveis:</strong> {{ produto.tamanhos }}</p>
+    <p class="info"><strong>Quantidade em estoque:</strong> {{ produto.quantidade_estoque }}</p>
+
+    <a class="btn-whatsapp"
+   href="https://wa.me/5500000000000?text=Olá! Gostaria de comprar o produto {{ produto.nome }}"
+   target="_blank">
+  <i class="bi bi-whatsapp me-2" style="font-size: 1.4rem;"></i>
+  Comprar pelo WhatsApp
+</a>
+  </div>
+</div>
+
+<script>
+  function changeImage(element) {
+    const mainImage = document.getElementById("main-image");
+    mainImage.src = element.src;
+
+    document.querySelectorAll(".miniaturas img").forEach(img => img.classList.remove("active"));
+    element.classList.add("active");
+  }
+</script>
+{% endblock %}
