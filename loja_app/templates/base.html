@@ -137,36 +137,51 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3 shadow-sm">
   <div class="container">
+    <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center" href="/">
       <img src="{% static 'myImages/logoo.png' %}" alt="Logo Nome" class="me-2" style="height: 50px; object-fit: contain;">
     </a>
 
+    <!-- Botão Mobile -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav align-items-center gap-3">
-
-        <!-- Links -->
+    <!-- Itens da Navbar -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Links principais -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center gap-2">
         <li class="nav-item">
-          <a class="nav-link nav-link-animated" href="/#produtos"><i class="bi bi-box-seam me-1"></i> Produtos</a>
+          <a class="nav-link nav-link-animated" href="/#produtos">
+            <i class="bi bi-box-seam me-1"></i> Produtos
+          </a>
         </li>
         <li class="nav-item">
-  <a class="nav-link nav-link-animated" href="{% url 'produtos_por_categoria' %}">
-    <i class="bi bi-grid me-1"></i> Categorias
-  </a>
-</li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-animated" href="/#sobre"><i class="bi bi-info-circle me-1"></i> Sobre</a>
+          <a class="nav-link nav-link-animated" href="{% url 'produtos_por_categoria' %}">
+            <i class="bi bi-grid me-1"></i> Categorias
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-link-animated" href="/#contato"><i class="bi bi-envelope me-1"></i> Contato</a>
+          <a class="nav-link nav-link-animated" href="/#sobre">
+            <i class="bi bi-info-circle me-1"></i> Sobre
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-animated" href="/#contato">
+            <i class="bi bi-envelope me-1"></i> Contato
+          </a>
         </li>
       </ul>
+
+      <!-- Formulário de busca -->
+      <form method="get" action="{% url 'busca_produtos' %}" class="d-flex" role="search">
+        <input class="form-control me-2 bg-dark text-light border-secondary" type="search" name="q" placeholder="Buscar produtos..." aria-label="Buscar">
+        <button class="btn btn-outline-warning" type="submit">Buscar</button>
+      </form>
     </div>
   </div>
 </nav>
+
 
 <!-- Conteúdo da Página -->
 {% block content %}
