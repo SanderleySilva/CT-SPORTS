@@ -3,24 +3,23 @@
 {% block title %}Início - Cezar & Tiago{% endblock %}
 
 {% block content %}
-<!-- Hero Banner -->
 {% load static %}
 
-<section class="hero py-5 text-center">
+<!-- Hero Banner -->
+<section class="hero text-center" style="padding: 100px 0 80px 0;">
   <div class="container">
-    <img src="{% static 'myImages/logo-sem-fundo.png' %}"
+    <img src="{% static 'myImages/logoo.png' %}"
          alt="Logo da loja"
-         class="img-fluid mb-3"
-         style="max-height: 300px; max-width: 300px; object-fit: contain;">
+         class="img-fluid mb-4"
+         style="max-height: 300px; max-width: 300px; object-fit: contain; margin-top: 40px;">
     <p class="lead fw-semibold">Produtos selecionados com qualidade e preço justo</p>
     <a href="#produtos" class="btn btn-custom btn-lg mt-3">Ver Produtos</a>
   </div>
 </section>
 
-
 <!-- Produtos -->
-<section class="container my-5" id="produtos">
-  <h2 class="text-center mb-4">Produtos em Destaque</h2>
+<section class="container py-5" id="produtos" style="margin-top: 80px; margin-bottom: 100px;">
+  <h2 class="text-center mb-5">Produtos em Destaque</h2>
   <div class="row g-4">
     {% for produto in produto %}
     <div class="col-6 col-md-4 col-lg-3">
@@ -38,17 +37,17 @@
 </section>
 
 <!-- Sobre -->
-<section class="py-5 text-white" id="sobre" style="background-color: #1e1e1e;">
+<section class="py-5 text-white" id="sobre" style="background-color: #1e1e1e; padding-top: 100px; padding-bottom: 100px;">
   <div class="container">
-    <h2 class="text-center mb-4">Sobre Nós</h2>
+    <h2 class="text-center mb-5">Sobre Nós</h2>
 
-    <div class="row justify-content-center mb-4">
+    <div class="row justify-content-center mb-5">
       <div class="col-md-8 text-center">
         <p class="lead">Somos Cezar e Tiago, fundadores dessa loja feita com carinho, inovação e propósito. Trabalhamos para entregar produtos de qualidade, com um excelente atendimento e experiência de compra.</p>
       </div>
     </div>
 
-    <div class="row justify-content-center mb-4">
+    <div class="row justify-content-center mb-5">
       <div class="col-md-3 text-center">
         <img src="https://i1.sndcdn.com/artworks-000157492463-x1olqe-t500x500.jpg" alt="Cezar" class="img-fluid rounded-circle mb-2" style="height: 180px; width: 180px; object-fit: cover;">
         <h5 class="mt-2 text-white">Cezar</h5>
