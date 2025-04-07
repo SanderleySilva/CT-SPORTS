@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+<style>
+  .categoria-wrapper {
+    position: relative;
+    margin-bottom: 60px;
+  }
+
+  .categoria-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .categoria-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  .card-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+    width: 250px;
+  }
+
+  @media (max-width: 576px) {
+    .card-wrapper {
+      width: 180px;
+    }
+
+    .card-title {
+      font-size: 1rem;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      padding: 4px 10px;
+      font-size: 0.85rem;
+    }
+  }
+
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #d4af37;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none; /* Sempre escondido até que precise */
+  }
+
+  .scroll-btn:hover {
+    background-color: #d4af37;
+    color: #121212;
+  }
+
+  .scroll-left {
+    left: -10px;
+  }
+
+  .scroll-right {
+    right: -10px;
+  }
+</style>
+
+<div class="container my-5">
+  <h1 class="text-center mb-5 text-warning">Produtos por Categoria</h1>
+
+  {% for categoria, produtos in categorias_com_produtos.items %}
+    <div class="categoria-wrapper">
+      <h3 class="text-light border-bottom border-warning pb-2 mb-3">{{ categoria.nome }}</h3>
+
+      <button class="scroll-btn scroll-left" id="btn-left-{{ categoria.id }}" onclick="scrollCategoria('{{ categoria.id }}', -1)">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+
+      <div class="categoria-scroll" id="scroll-categoria-{{ categoria.id }}">
+        {% for produto in produtos %}
+          <div class="card-wrapper">
+            <div class="card h-100">
+              {% if produto.foto_1 %}
+                <img src="{{ produto.foto_1.url }}" class="card-img-top" alt="{{ produto.nome }}">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ produto.nome }}</h5>
+                <p class="card-text">R$ {{ produto.preco }}</p>
+                <a href="{% url 'info_produtos' produto.id %}" class="btn btn-custom">Ver mais</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <button class="scroll-btn scroll-right" id="btn-right-{{ categoria.id }}" onclick="scrollCategoria('{{ categoria.id }}', 1)">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  function scrollCategoria(categoriaId, direction) {
+    const container = document.getElementById(`scroll-categoria-${categoriaId}`);
+    const card = container.querySelector('.card-wrapper');
+    const scrollAmount = card ? card.offsetWidth + 15 : 200;
+    container.scrollBy({
+      left: scrollAmount * direction,
+      behavior: 'smooth'
+    });
+  }
+
+  function verificarScroll() {
+    const categorias = document.querySelectorAll('.categoria-scroll');
+    categorias.forEach(container => {
+      const id = container.id.replace('scroll-categoria-', '');
+      const btnLeft = document.getElementById(`btn-left-${id}`);
+      const btnRight = document.getElementById(`btn-right-${id}`);
+
+      // Só mostra os botões se o conteúdo estiver "rolável"
+      if (container.scrollWidth > container.clientWidth) {
+        btnLeft.style.display = 'block';
+        btnRight.style.display = 'block';
+      } else {
+        btnLeft.style.display = 'none';
+        btnRight.style.display = 'none';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', verificarScroll);
+  window.addEventListener('resize', verificarScroll);
+</script>
+{% endblock %}
