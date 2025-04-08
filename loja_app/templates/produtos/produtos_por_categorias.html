@@ -94,7 +94,7 @@
               {% endif %}
               <div class="card-body">
                 <h5 class="card-title">{{ produto.nome }}</h5>
-                <p class="card-text">R$ {{ produto.preco }}</p>
+                <p class="card-text text-success">R$ {{ produto.preco }}</p>
                 <a href="{% url 'info_produtos' produto.id %}" class="btn btn-custom">Ver mais</a>
               </div>
             </div>
