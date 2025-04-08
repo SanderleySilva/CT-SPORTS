@@ -37,47 +37,60 @@
 </section>
 
 <!-- Sobre -->
+{% load static %}
 <section class="py-5 text-white" id="sobre" style="background-color: #1e1e1e; padding-top: 100px; padding-bottom: 100px;">
   <div class="container">
     <h2 class="text-center mb-5">Sobre Nós</h2>
 
     <div class="row justify-content-center mb-5">
       <div class="col-md-8 text-center">
-        <p class="lead">Somos Cezar e Tiago, fundadores dessa loja feita com carinho, inovação e propósito. Trabalhamos para entregar produtos de qualidade, com um excelente atendimento e experiência de compra.</p>
+        <p class="lead">
+          Somos Cezar e Tiago, fundadores dessa loja feita com carinho, inovação e propósito.
+          Trabalhamos para entregar produtos de qualidade, com um excelente atendimento e experiência de compra.
+        </p>
       </div>
     </div>
 
     <div class="row justify-content-center mb-5">
       <div class="col-md-3 text-center">
-        <img src="https://i1.sndcdn.com/artworks-000157492463-x1olqe-t500x500.jpg" alt="Cezar" class="img-fluid rounded-circle mb-2" style="height: 180px; width: 180px; object-fit: cover;">
+        <img src="{% static 'sobre/cezar.jpg' %}" alt="Cezar" class="img-fluid rounded-circle mb-2"
+             style="height: 180px; width: 180px; object-fit: cover;">
         <h5 class="mt-2 text-white">Cezar</h5>
-        <p style="color: #ccc;">Marketing e experiência do cliente</p>
+        <p style="color: #ccc;">CEO da loja</p>
+        <div class="d-flex flex-column align-items-center mt-2" style="gap: 0.4rem;">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-instagram text-light" style="font-size: 1.3rem;"></i>
+            <a href="https://www.instagram.com/cezararaujo_02?igsh=Zzh2b3o4MmVmOGhm" class="text-light" target="_blank"
+               style="text-decoration: none; font-size: 0.9rem;">@cezararaujo_02</a>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-facebook text-light" style="font-size: 1.3rem;"></i>
+            <a href="https://www.facebook.com/cezar.ct" class="text-light" target="_blank"
+               style="text-decoration: none; font-size: 0.9rem;">fb.com/cezar.ct</a>
+          </div>
+        </div>
       </div>
-      <div class="col-md-3 text-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGu5adudEb5BR3A0m8MV8wT5UpW2XGOoKQDQ&s" alt="Tiago" class="img-fluid rounded-circle mb-2" style="height: 180px; width: 180px; object-fit: cover;">
-        <h5 class="mt-2 text-white">Tiago</h5>
-        <p style="color: #ccc;">Desenvolvimento e-commerce</p>
-      </div>
-    </div>
 
-    <div class="text-center">
-      <h5 class="mb-3 text-white">Siga-nos nas redes sociais</h5>
-      <div class="d-flex justify-content-center align-items-center flex-wrap gap-4">
-        <div class="text-center">
-          <a href="https://www.instagram.com/ctsports" class="text-light" target="_blank">
-            <i class="bi bi-instagram" style="font-size: 2rem;"></i>
-          </a>
-          <p class="mt-2 mb-0" style="font-size: 0.9rem;">@loja_cezartiago</p>
-        </div>
-        <div class="text-center">
-          <a href="https://www.facebook.com/ctsports" class="text-light" target="_blank">
-            <i class="bi bi-facebook" style="font-size: 2rem;"></i>
-          </a>
-          <p class="mt-2 mb-0" style="font-size: 0.9rem;">fb.com/cezartiago</p>
+      <div class="col-md-3 text-center">
+        <img src="{% static 'sobre/tiago.jpg' %}" alt="Tiago" class="img-fluid rounded-circle mb-2"
+             style="height: 180px; width: 180px; object-fit: cover;">
+        <h5 class="mt-2 text-white">Tiago</h5>
+        <p style="color: #ccc;">CEO da loja</p>
+        <div class="d-flex flex-column align-items-center mt-2" style="gap: 0.4rem;">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-instagram text-light" style="font-size: 1.3rem;"></i>
+            <a href="https://www.instagram.com/tiago_mattos_97?igsh=ajkxcHNibTYyYXVw" class="text-light" target="_blank"
+               style="text-decoration: none; font-size: 0.9rem;">@tiago_mattos_97</a>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-facebook text-light" style="font-size: 1.3rem;"></i>
+            <a href="https://www.facebook.com/tiago.ct" class="text-light" target="_blank"
+               style="text-decoration: none; font-size: 0.9rem;">fb.com/tiago.ct</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </section>
+
 
 {% endblock %}
