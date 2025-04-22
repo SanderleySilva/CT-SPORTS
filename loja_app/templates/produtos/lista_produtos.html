@@ -13,9 +13,19 @@
          class="img-fluid mb-4"
          style="max-height: 300px; max-width: 300px; object-fit: contain; margin-top: 40px;">
     <p class="lead fw-semibold">Produtos selecionados com qualidade e preço justo</p>
-    <a href="#produtos" class="btn btn-custom btn-lg mt-3">Ver Produtos</a>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+      <!-- Botão "Ver Produtos" -->
+      <a href="#produtos" class="btn btn-custom btn-lg">Ver Produtos</a>
+
+      <!-- Botão "Ofertas 🔥" com o mesmo estilo -->
+      <a href="{% url 'produtos_em_oferta' %}" class="btn btn-custom btn-lg">
+        <i class="bi bi-tags-fill me-1"></i> Ofertas
+      </a>
+    </div>
   </div>
 </section>
+
+
 
 <!-- Produtos -->
 <section class="container py-5" id="produtos" style="margin-top: 80px; margin-bottom: 100px;">

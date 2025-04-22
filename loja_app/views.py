@@ -35,3 +35,14 @@ def buscaProduto(request):
     ) if termo else Produto.objects.none()  # Verifica se o termo foi fornecido
 
     return render(request, 'produtos/busca_produtos.html', {'produtos': produtos, 'termo': termo})
+
+def produtoEmOfertas(request):
+    contexto = {}
+    try:
+        produto_em_promocao = Categoria.objects.get(nome = 'Promoção')
+        produto_em_promocao = Produto.objects.filter(categoria = produto_em_promocao)
+        if produto_em_promocao.exists():
+            contexto['produtos'] = produto_em_promocao
+    except Categoria.DoesNotExist():
+        contexto['erro'] = 'Nenhum produto adicionado no momento.'
+    return render(request, 'produtos/produtos_em_oferta.html', contexto)
