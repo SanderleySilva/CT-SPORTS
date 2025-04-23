@@ -2,6 +2,9 @@
 {% block title %}Categorias{% endblock %}
 
 {% block content %}
+<!-- Incluindo o Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 <style>
   .categoria-wrapper {
     position: relative;
@@ -72,6 +75,41 @@
   .scroll-right {
     right: -10px;
   }
+
+  .preco {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    gap: 6px;
+    color: white; /* Cor branca para os preços */
+  }
+
+  .preco-dinheiro,
+  .preco-cartao {
+    color: white; /* Cor branca */
+  }
+
+  /* Estilos para os ícones */
+  .icon {
+    font-size: 1.5rem; /* Aumenta o tamanho do ícone */
+    margin-right: 6px; /* Ajuste o espaçamento entre o ícone e o texto */
+    background: transparent; /* Fundo transparente */
+    border: none; /* Garante que não tenha borda */
+  }
+
+  .icon-wallet {
+    color: #28a745; /* Verde para o ícone de carteira */
+  }
+
+  .icon-credit-card {
+    color: #dc3545; /* Vermelho para o ícone de cartão */
+  }
+
+  /* Garantir que o fundo do botão de scroll seja transparente */
+  .scroll-btn {
+    background-color: transparent;
+    border: none;
+  }
 </style>
 
 <div class="container my-5">
@@ -94,7 +132,16 @@
               {% endif %}
               <div class="card-body">
                 <h5 class="card-title">{{ produto.nome }}</h5>
-                <p class="card-text text-success">R$ {{ produto.preco }}</p>
+                <div class="preco">
+                  <!-- Usando o ícone de carteira verde para o preço em dinheiro -->
+                  <p class="preco-dinheiro">
+                    <i class="fas fa-wallet icon icon-wallet"></i> R$ {{ produto.preco_dinheiro }}
+                  </p>
+                  <p class="preco-cartao">
+                    <!-- Usando o ícone de cartão vermelho para o preço no cartão -->
+                    <i class="fas fa-credit-card icon icon-credit-card"></i> R$ {{ produto.preco_cartao }}
+                  </p>
+                </div>
                 <a href="{% url 'info_produtos' produto.id %}" class="btn btn-custom">Ver mais</a>
               </div>
             </div>

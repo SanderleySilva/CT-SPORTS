@@ -11,7 +11,7 @@ from django.db.models import Q
 # Lista de produtos
 def lista_produtos(request):
     produtos = Produto.objects.all()
-    return render(request, 'produtos/lista_produtos.html', {'produto': produtos})
+    return render(request, 'produtos/lista_produtos.html', {'produtos': produtos})
 
 
 # Detalhes do produto

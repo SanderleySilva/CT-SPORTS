@@ -23,7 +23,8 @@ class Categoria(models.Model):
 class Produto(models.Model):
     objects = None
     nome = models.CharField(max_length=255)
-    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    preco_dinheiro = models.DecimalField(max_digits=10, decimal_places=2)
+    preco_cartao = models.DecimalField(max_digits=10, decimal_places=2)
     quantidade_estoque = models.IntegerField(default=0)
     tamanhos = models.CharField(max_length=255, help_text="Exemplo: 37, 38, 39, 40")
     foto_1 = models.ImageField(upload_to='media/produtos/', blank=True, null=True)
@@ -38,13 +39,16 @@ class Produto(models.Model):
     )
 
     def __str__(self):
-        return f"{self.nome} - {self.preco:.2f}"
+        return f"{self.nome} - R$ {self.preco_dinheiro:.2f} (Dinheiro) / R$ {self.preco_cartao:.2f} (Cartão)"
 
     def clean(self):
-        if self.preco < 0:
-            raise ValidationError("O preço não pode ser negativo.")
+        if self.preco_dinheiro < 0:
+            raise ValidationError("O preço em dinheiro não pode ser negativo.")
+        if self.preco_cartao < 0:
+            raise ValidationError("O preço no cartão não pode ser negativo.")
         if self.quantidade_estoque < 0:
             raise ValidationError("A quantidade de estoque não pode ser menor que zero.")
+
 
 
 

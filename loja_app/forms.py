@@ -8,7 +8,8 @@ class ProdutoForm(forms.ModelForm):
 
         widgets = {
             'nome':forms.TextInput(attrs={'class':'form-control'}),
-            'preco':forms.NumberInput(attrs={'class':'form-control'}),
+            'preco_dinheiro':forms.NumberInput(attrs={'class':'form-control'}),
+            'preco_cartao': forms.NumberInput(attrs={'class': 'form-control'}),
             'quantidade_estoque': forms.NumberInput(attrs={'class': 'form-control'}),
             'tamanhos': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Exemplo: 37, 38, 39'}),
             'foto_1': forms.ClearableFileInput(attrs={'class': 'form-control'}),

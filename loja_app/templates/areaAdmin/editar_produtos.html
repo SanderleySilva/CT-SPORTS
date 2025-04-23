@@ -24,12 +24,22 @@
 
     <div class="row">
       <div class="col-md-6 mb-3">
-        <label for="{{ form.preco.id_for_label }}" class="form-label">{{ form.preco.label }}</label>
-        {{ form.preco }}
-        {% for error in form.preco.errors %}
+        <label for="{{ form.preco_dinheiro.id_for_label }}" class="form-label">{{ form.preco_dinheiro.label }}</label>
+        {{ form.preco_dinheiro }}
+        {% for error in form.preco_dinheiro.errors %}
           <div class="text-danger">{{ error }}</div>
         {% endfor %}
       </div>
+      <div class="col-md-6 mb-3">
+        <label for="{{ form.preco_cartao.id_for_label }}" class="form-label">{{ form.preco_cartao.label }}</label>
+        {{ form.preco_cartao }}
+        {% for error in form.preco_cartao.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-6 mb-3">
         <label for="{{ form.quantidade_estoque.id_for_label }}" class="form-label">{{ form.quantidade_estoque.label }}</label>
         {{ form.quantidade_estoque }}

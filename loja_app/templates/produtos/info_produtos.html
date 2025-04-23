@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Incluindo o Font Awesome CDN para garantir que os ícones apareçam -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -71,7 +74,22 @@
   .preco {
     font-size: 26px;
     font-weight: bold;
-    color: #00e676;
+    color: #ffffff; /* Preço em branco */
+  }
+
+  .preco-dinheiro,
+  .preco-cartao {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffffff; /* Preço em branco */
+  }
+
+  .preco-dinheiro .icon i {
+    color: #28a745; /* Ícone de carteira verde */
+  }
+
+  .preco-cartao .icon i {
+    color: #dc3545; /* Ícone de cartão vermelho */
   }
 
   .info {
@@ -127,16 +145,35 @@
   <!-- Informações do Produto -->
   <div class="detalhes">
     <h1>{{ produto.nome }}</h1>
-    <p class="preco">R$ {{ produto.preco|floatformat:2 }}</p>
+
+    <!-- Exibindo os preços com ícones -->
+    <div class="preco">
+      <p class="preco-dinheiro">
+        <span class="icon">
+          <i class="fas fa-wallet"></i> <!-- Ícone de carteira -->
+        </span>
+        R$ {{ produto.preco_dinheiro|floatformat:2 }}
+      </p>
+
+      {% if produto.preco_cartao %}
+        <p class="preco-cartao">
+          <span class="icon">
+            <i class="fas fa-credit-card"></i> <!-- Ícone de cartão -->
+          </span>
+          R$ {{ produto.preco_cartao|floatformat:2 }}
+        </p>
+      {% endif %}
+    </div>
+
     <p class="info"><strong>Tamanhos disponíveis:</strong> {{ produto.tamanhos }}</p>
     <p class="info"><strong>Quantidade em estoque:</strong> {{ produto.quantidade_estoque }}</p>
 
     <a class="btn-whatsapp"
-   href="https://wa.me/5500000000000?text=Olá! Gostaria de comprar o produto {{ produto.nome }}"
-   target="_blank">
-  <i class="bi bi-whatsapp me-2" style="font-size: 1.4rem;"></i>
-  Comprar pelo WhatsApp
-</a>
+      href="https://wa.me/5500000000000?text=Olá! Gostaria de comprar o produto {{ produto.nome }}"
+      target="_blank">
+      <i class="bi bi-whatsapp me-2" style="font-size: 1.4rem;"></i>
+      Comprar pelo WhatsApp
+    </a>
   </div>
 </div>
 
