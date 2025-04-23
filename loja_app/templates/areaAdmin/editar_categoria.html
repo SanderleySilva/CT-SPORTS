@@ -1,0 +1,59 @@
+<!-- templates/areaAdmin/editar_categoria.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Editar Categoria</h2>
+
+  <!-- Exibição de mensagens -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        <!-- Campo Nome -->
+        <div class="mb-3">
+          <label class="form-label" for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+          <input type="text" name="{{ form.nome.name }}" value="{{ form.nome.value }}" id="{{ form.nome.id_for_label }}" class="form-control">
+          {% for error in form.nome.errors %}
+            <div class="text-danger small mt-1">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <!-- Campo Categoria Pai -->
+        <div class="mb-3">
+          <label class="form-label" for="{{ form.categoria_pai.id_for_label }}">{{ form.categoria_pai.label }}</label>
+          <select name="{{ form.categoria_pai.name }}" id="{{ form.categoria_pai.id_for_label }}" class="form-select">
+            {% for option in form.categoria_pai.field.choices %}
+              <option value="{{ option.0 }}" {% if option.0 == form.categoria_pai.value %}selected{% endif %}>
+                {{ option.1 }}
+              </option>
+            {% endfor %}
+          </select>
+          {% for error in form.categoria_pai.errors %}
+            <div class="text-danger small mt-1">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <!-- Botões -->
+        <div class="d-flex justify-content-between mt-4">
+          <a href="{% url 'listar_categorias' %}" class="btn btn-secondary">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

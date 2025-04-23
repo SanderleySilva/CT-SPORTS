@@ -1,0 +1,57 @@
+<!-- templates/areaAdmin/listar_categorias.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4 mb-5"> <!-- Ajuste de margens para maior consistência -->
+  <h2 class="mb-4">Categorias</h2>
+
+  <!-- Exibição de mensagens -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <!-- Botão de Nova Categoria -->
+  <a href="{% url 'cadastrar_categoria' %}" class="btn btn-success mb-3">Nova Categoria</a>
+
+  <!-- Tabela de Categorias -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Categoria Pai</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for categoria in categorias %}
+        <tr>
+          <td>{{ categoria.nome }}</td>
+          <td>
+            {% if categoria.categoria_pai %}
+              {{ categoria.categoria_pai.nome }}
+            {% else %}
+              Nenhuma
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'editar_categoria' categoria.id %}" class="btn btn-sm btn-primary me-2">Editar</a>
+            <a href="{% url 'excluir_categoria' categoria.id %}" class="btn btn-sm btn-danger">Excluir</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Botão para voltar ao Dashboard -->
+  <div class="d-flex justify-content-between mt-3">
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Voltar ao Dashboard</a>
+  </div>
+</div>
+{% endblock %}

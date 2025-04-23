@@ -17,6 +17,9 @@
       background-color: #121212;
       font-family: 'Poppins', sans-serif;
       color: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .navbar {
@@ -102,7 +105,7 @@
       background-color: #1f1f1f;
       color: #aaa;
       padding: 20px 0;
-      margin-top: 50px;
+      margin-top: 60px; /* Espaço maior para separar do conteúdo anterior */
       font-size: 14px;
     }
 
@@ -131,25 +134,23 @@
       color: #ccc;
       margin-top: 5px;
     }
+
+    .content {
+      flex-grow: 1;
+    }
   </style>
 </head>
 <body>
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3 shadow-sm">
   <div class="container">
-    <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center" href="/">
       <img src="{% static 'myImages/logoo.png' %}" alt="Logo Nome" class="me-2" style="height: 50px; object-fit: contain;">
     </a>
-
-    <!-- Botão Mobile -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Itens da Navbar -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <!-- Links principais -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center gap-2">
         <li class="nav-item">
           <a class="nav-link nav-link-animated" href="/#produtos">
@@ -172,8 +173,6 @@
           </a>
         </li>
       </ul>
-
-      <!-- Formulário de busca -->
       <form method="get" action="{% url 'busca_produtos' %}" class="d-flex" role="search">
         <input class="form-control me-2 bg-dark text-light border-secondary" type="search" name="q" placeholder="Buscar produtos..." aria-label="Buscar">
         <button class="btn btn-outline-warning" type="submit">Buscar</button>
@@ -182,10 +181,11 @@
   </div>
 </nav>
 
-
 <!-- Conteúdo da Página -->
-{% block content %}
-{% endblock %}
+<div class="content">
+  {% block content %}
+  {% endblock %}
+</div>
 
 <!-- Rodapé -->
 <footer id="contato">
@@ -213,6 +213,12 @@
         </a>
         <div class="social-label">(99) 99999-9999</div>
       </div>
+    </div>
+
+    <div class="my-2">
+      <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-secondary btn-sm">
+        Área do Administrador
+      </a>
     </div>
 
     <p>&copy; 2025 <span style="color: #d4af37;">CT SPORTS</span> - Todos os direitos reservados</p>

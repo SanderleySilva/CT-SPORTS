@@ -21,6 +21,7 @@ class Categoria(models.Model):
 
 
 class Produto(models.Model):
+    objects = None
     nome = models.CharField(max_length=255)
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     quantidade_estoque = models.IntegerField(default=0)

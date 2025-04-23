@@ -1,0 +1,26 @@
+<!-- templates/areaAdmin/cadastrar_categoria.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center mt-5">
+  <div class="card shadow-lg p-4 w-100" style="max-width: 600px;">
+    <h3 class="card-title mb-4 text-center">Cadastrar Nova Categoria</h3>
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label class="form-label" for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+        <input type="text" name="{{ form.nome.name }}"  id="{{ form.nome.id_for_label }}" class="form-control">
+        {% for error in form.nome.errors %}
+          <div class="text-danger small mt-1">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="d-flex justify-content-between mt-4">
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

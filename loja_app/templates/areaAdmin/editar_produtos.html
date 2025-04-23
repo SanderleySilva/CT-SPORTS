@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Editar Produto: {{ produto.nome }}</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="{{ form.nome.id_for_label }}" class="form-label">{{ form.nome.label }}</label>
+        {{ form.nome }}
+        {% for error in form.nome.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="{{ form.categoria.id_for_label }}" class="form-label">{{ form.categoria.label }}</label>
+        {{ form.categoria }}
+        {% for error in form.categoria.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="{{ form.preco.id_for_label }}" class="form-label">{{ form.preco.label }}</label>
+        {{ form.preco }}
+        {% for error in form.preco.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="{{ form.quantidade_estoque.id_for_label }}" class="form-label">{{ form.quantidade_estoque.label }}</label>
+        {{ form.quantidade_estoque }}
+        {% for error in form.quantidade_estoque.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="{{ form.tamanhos.id_for_label }}" class="form-label">{{ form.tamanhos.label }}</label>
+        {{ form.tamanhos }}
+        {% for error in form.tamanhos.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="{{ form.foto_1.id_for_label }}" class="form-label">{{ form.foto_1.label }}</label>
+        {{ form.foto_1 }}
+        {% for error in form.foto_1.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="{{ form.foto_2.id_for_label }}" class="form-label">{{ form.foto_2.label }}</label>
+        {{ form.foto_2 }}
+        {% for error in form.foto_2.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="{{ form.foto_3.id_for_label }}" class="form-label">{{ form.foto_3.label }}</label>
+        {{ form.foto_3 }}
+        {% for error in form.foto_3.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3">
+      <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+      <a href="{% url 'listar_produtos' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

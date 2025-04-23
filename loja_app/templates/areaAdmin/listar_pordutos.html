@@ -1,0 +1,37 @@
+<!-- templates/areaAdmin/listar_produtos.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4 mb-5"> <!-- adicionei a classe mb-5 para dar margem inferior -->
+  <h2>Produtos no Estoque</h2>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+  <a href="{% url 'cadastrar_produtos' %}" class="btn btn-success mb-3">Novo Produto</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Preço</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for produto in produtos %}
+        <tr>
+          <td>{{ produto.nome }}</td>
+          <td>{{ produto.categoria.nome }}</td>
+          <td>R$ {{ produto.preco }}</td>
+          <td>
+            <a href="{% url 'editar_produtos' produto.id %}" class="btn btn-sm btn-primary">Editar</a>
+            <a href="{% url 'excluir_produto' produto.id %}" class="btn btn-sm btn-danger">Excluir</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Voltar ao Dashboard</a>
+</div>
+{% endblock %}

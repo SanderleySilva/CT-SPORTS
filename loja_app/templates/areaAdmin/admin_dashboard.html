@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center text-warning">Bem-vindo, {{ request.user.username }}!</h2>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="list-group">
+                <a href="{% url 'listar_produtos' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center shadow-sm hover-effect">
+                    Gerenciar Produtos
+                    <i class="bi bi-box-seam"></i>
+                </a>
+                <a href="{% url 'listar_categorias' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center shadow-sm hover-effect">
+                    Gerenciar Categorias
+                    <i class="bi bi-tags"></i>
+                </a>
+                <a href="{% url 'cadastrar_categoria' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center shadow-sm hover-effect">
+                    Nova Categoria
+                    <i class="bi bi-plus-circle"></i>
+                </a>
+                <a href="{% url 'cadastrar_produtos' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center shadow-sm hover-effect">
+                    Novo Produto
+                    <i class="bi bi-box-arrow-in-right"></i>
+                </a>
+                <a href="{% url 'logout_admin' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center shadow-sm hover-effect text-danger">
+                    Sair
+                    <i class="bi bi-box-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .list-group-item {
+        background-color: #343a40;
+        color: #f8f9fa;
+        border: 1px solid #444;
+        transition: background-color 0.3s ease;
+    }
+
+    .list-group-item:hover {
+        background-color: #495057;
+    }
+
+    .list-group-item i {
+        font-size: 1.2rem;
+    }
+
+    .hover-effect:hover {
+        background-color: #6c757d;
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-close {
+        color: #f8f9fa;
+    }
+
+    .alert-dismissible .btn-close {
+        color: #f8f9fa;
+    }
+
+    .text-warning {
+        color: #d4af37 !important;
+    }
+</style>
+{% endblock %}
